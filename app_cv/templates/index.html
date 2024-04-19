@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  {% load static %}
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="{% static 'Style.css' %}" rel="stylesheet">
+</head>
+
+<div class ='centraliza'>
+<div class='bordas'>
+
+<body>
+  <div class ='centraliza'>
+  <h1 style = 'color:darkblue'> Melhores Filmes de 2023 </h1>
+  <h2 style = 'color:darkblue'>  {{usuario.Username}} <a href="/logout">Sair</a>  </h2>
+    </div>
+  <div class ='centraliza'>
+  <div class ='caixa'>
+  <p style = "text-align: justify;">  
+  2023 foi um ano incrivel para a industria cinematografica, deles tivemos   obras primas de diretores legendarios entre eles vale-se ressaltar <b class ='relevar'>Martin Scorcese</b>, <b class ='relevar'>Christopher Nolan</b> e <b class ='relevar'>Hayao Miyazaki</b>. Além deles tivemos filmes surpreendentes de diretores menos conhecidos como <b class ='relevar'>Greta Gerwig</b> e <b class ='relevar'>Yorgos Lanthimos</b>. Mas em um geral 2023 foi um ano que será lembrado por décadas.
+  </p>
+    </div>
+    </div>
+
+  <div class ='centraliza'>
+<img src='https://hips.hearstapps.com/hmg-prod/images/overview-of-the-oscar-statue-at-meet-the-oscars-at-the-time-news-photo-1588178852.jpg?crop=0.99092xw:1xh;center,top&resize=1200:*' class = 'Dimen_filme' height = '500'>
+    </div>
+  <div class='caixa'>
+<p style = "text-align: justify;">
+  Vendo a quantidade de filmes incrivéis lançados esse ano, decidi fazer um ranking dos meus filmes favoritos. Mesmo não conseguindo ver todos eles, alguns eu ainda gostaria de ver devido serem críticamentes aclamados, então como mencões honrosas temos <b class ='relevar'>Pobres criaturas</b>,<b class ='relevar'>O menino e a garça</b> e <b class ='relevar'>Os rejeitados</b>. 
+</p>
+  </div>
+
+  <h3 style = 'color:darkblue'> melhores filmes de 2023 </h3> <a href = "/Adicionar"> Adicionar Filmes </a>
+
+  
+  
+  <ol style='color:darkblue'>
+    {% for filme in filmes %}
+    <li>
+    <div>
+      <h4>{{ filme.Nome }} - {{ filme.Diretor}}</h4>
+      <div class ='centraliza'>
+      <img src="{{ filme.Icone }}" class = 'Dimen_filme'>
+      <h5> {{ filme.Lancamento }} - Média entre os sites:{{ filme.Critica_geral }}  </h6>
+      </div>
+      <div class ='caixa'>
+      <ul>
+        {% for link in links %}
+          {% if link.FK_NomeF == filme.Nome %}
+            <li>
+              <a href="{{ link.link }}">{{ link.get_nomeL_display }} </a><h4>{{ link.Critica }}/10,0 de {{ link.QTDCritical }} críticos</h4>
+              
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      </div>
+      <br>
+      <a href="/Editar/{{ filme.Nome|urlize }}">Editar Filmes</a>
+      <a href="/Remover/{{ filme.Nome|urlize }}">Remover Filmes</a>
+    </div>
+    </li>
+    {% endfor %}
+  </ol>
+
+  <div class ='centraliza' style='color:black'>
+  <table>
+    <tr>
+      <th>Filme</th>
+      <th>Diretor</th>
+      <th>Oscars vencidos</th>
+    </tr>
+    <tr>
+      <td>Homem-Aranha</td>
+      <td>Joaquim dos Santos e cia</td>
+      <td>0/1</td>
+    </tr>
+    <tr>
+      <td>Oppenheimer</td>
+      <td>Christopher Nolan</td>
+      <td>7/13</td>
+    </tr>
+    <tr>
+      <td>Assassinos da lua das flores</td>
+      <td>Martin Scorsese</td>
+      <td>0/9</td>
+    </tr>
+    <tr>
+      <td>Barbie</td>
+      <td>Greta Gerwig</td>
+      <td>1/8</td>
+    </tr>
+    <tr>
+      <td>John wick 4</td>
+      <td>Chad Stahelski</td>
+      <td>0/0</td>
+    </tr>
+  </table>
+</div>
+
+</body>
+
+</div>
+</div>
+
+
+</html>
